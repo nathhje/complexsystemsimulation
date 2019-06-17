@@ -10,8 +10,10 @@ def error_estim(n1, n2, xn, xp):
     return en
 
 def gnorm(A, An, B, Bn):
-    Adiff = ((A/An)) -1)* np.sign((A/An) - 1)
-    Bdiff = ((B/Bn)) -1)* np.sign((B/Bn) - 1)
+    Adiff = ((A/An) -1)* np.sign((A/An) - 1)
+    Bdiff = ((B/Bn) -1)* np.sign((B/Bn) - 1)
+    gnorm = Adiff - Bdiff
+    return gnorm
 
 def output(An, A, B, Bn, M, w3, error_estim, z):
-    output = (1.1- ())
+    output = (1.1- (gnorm) * np,tansig(w3 * error_estim))
