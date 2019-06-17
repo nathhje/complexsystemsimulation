@@ -15,5 +15,13 @@ def gnorm(A, An, B, Bn):
     gnorm = Adiff - Bdiff
     return gnorm
 
-def output(An, A, B, Bn, M, w3, error_estim, z):
-    output = (1.1- (gnorm) * np.tansig(w3 * error_estim))
+def output(An, A, B, Bn, M, w3, n1,n2,xn,xp, zk):
+    output = (1.1- (gnorm(A, An, B, Bn)) * np.tanh(w3 * error_estim(n1,n2,xn,xp)))*zk
+    return output
+
+def gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
+    delta = np.tanh(wd* error_estim(n1,n2,xn,xp))
+    Adiff = ((A/An) -1)* np.sign((A/An) - 1) * delta 
+    Bdiff = ((B/Bn) -1)* np.sign((B/Bn) - 1) * delta 
+    g = gopt + (Adiff - Bdiff)
+    return g 
