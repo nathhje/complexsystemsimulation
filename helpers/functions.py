@@ -16,4 +16,4 @@ def gnorm(A, An, B, Bn):
     return gnorm
 
 def output(An, A, B, Bn, M, w3, error_estim, z):
-    output = (1.1- (gnorm) * np,tansig(w3 * error_estim))
+    output = (1.1- (gnorm) * np.tansig(w3 * error_estim))
