@@ -23,7 +23,7 @@ def output(An, A, B, Bn, M, w3, error_estim, z):
     
 xset=[]
 xout=[]
-for x in np.arange(-10,10,0.1):
+for x in np.arange(-20,20,0.1):
     xset.append(x)
     xout.append(x_n1(x,16.5,5.82,1.487,0.2223))
     
