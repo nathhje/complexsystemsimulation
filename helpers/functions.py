@@ -1,8 +1,8 @@
 import math
 import numpy as np
 
-def x_n1(xn, B, A, w1, w2):
-    x_n1 = B*(math.tanh(w2*xn)) - A*(math.tanh(w1*xn))
+def x_n1(xn, Ex, In):
+    x_n1 = Ex.performance(xn) - In.performance(xn)
     return x_n1
 
 def error_estim(n1, n2, xn, xp): 
