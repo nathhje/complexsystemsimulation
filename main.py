@@ -12,8 +12,8 @@ def main():
     theModel = model.Model()
     print(theModel.In.coef)
     print(theModel.Ex.weight) 
-    theModel.bifurcation()
-    return
+    output = theModel.runModel()
+    print(output)
 
 if __name__ == '__main__':
     main()

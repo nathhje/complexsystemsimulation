@@ -37,12 +37,14 @@ def fyk(alpha, beta, Iext, yk, ykm1):
 
 
 def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, g):
-    def epsilon(y, yth):
+    yth = 0.01
+    
+    def epsilon(y):
         return np.heaviside(y - yth)
+
+    ykp1 = (1- epsilon(zk)) * fyk(alpha, beta, Iext, yk, ykm1) + epsilon(zk)*yp
     
-    ykp1 = (1- epsilon(zk, yth)) * fyk(alpha, beta, Iext, yk, ykm1) + epsilon(zk, yth)*yp
-    
-    if yk > alpha + u or ykm1 > 0:
+    if yk > alpha + beta + Iext or ykm1 > 0:
         zkp1 = zs
     else:
         zkp1 = (1-mu) * zk - g * zk * ((1-zk)**2)

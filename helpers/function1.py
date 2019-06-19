@@ -25,7 +25,7 @@ xset=[]
 xout=[]
 for x in np.arange(-10,10,0.1):
     xset.append(x)
-    xout.append(x_n1(x,16.5,5.82,1.487,0.2223))
+    xout.append(x_n1(x,5.82,16.5,1.487,0.2223))
     
 plt.figure()
 plt.plot(xset,xout)
