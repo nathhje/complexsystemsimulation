@@ -57,7 +57,6 @@ for B in np.arange(0, 20, 0.1):
     for i in range(0, 400):
         y = x_n1(x, B, 14.52, 0.2223, 1.487)
         y2 = x_n1(x2, B, 14.52, 0.2223, 1.487)
-        # x = error_estim(1,50, x_set[period], x1)
         # Plot the two lines.
         # plt.plot([x, x], [x, y], 'k', lw=1)
         # plt.plot([x, y], [y, y], 'k', lw=1)
