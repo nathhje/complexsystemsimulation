@@ -41,6 +41,12 @@ class Model():
     
     def runModel(self):
 
+        An = 13.6
+        Bn = 5.82
+
+        beta = 1
+        iext = 0.5
+
         x = math.inf 
         x_s = []
         x_s.append(x)
@@ -59,7 +65,7 @@ class Model():
             fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
             y.append(fyk)
 
-            zk = functions.Rulkov(3.2, beta, Iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+            zk = functions.Rulkov(3.2, beta, iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
             zk_s.append(zk)
 
             outputk = functions.output(An, 16.47, 5.82, Bn, 1, 0,100, x_s[i-5], x_s[i-1], zk)
