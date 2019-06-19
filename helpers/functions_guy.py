@@ -15,8 +15,8 @@ def gnorm(A, An, B, Bn):
     gnorm = Adiff - Bdiff
     return gnorm
 
-def output(An, A, B, Bn, M, w3, n1,n2,xn,xp, zk):
-    output = (1.1- (gnorm(A, An, B, Bn)) * np.tanh(w3 * error_estim(n1,n2,xn,xp)))*zk
+def output(An, A, B, Bn, w3, n1,n2,xn,xp, zk):
+    output = (1.1- (gnorm(A, An, B, Bn)) * np.tansig(w3 * error_estim(n1,n2,xn,xp)))*zk
     return output
 
 def gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
@@ -49,4 +49,3 @@ def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, gopt, A, An, B, Bn, wd, 
 
     return ykp1, zkp1 
 
-def output()
