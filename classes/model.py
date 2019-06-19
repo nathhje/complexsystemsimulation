@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 from classes.population import Population
 import helpers.functions_guy as functions
+import helpers.functions as functions1
 
 class Model():
     
@@ -29,7 +30,7 @@ class Model():
         for A in np.arange(0.,40.,0.1):
             
             self.In.coef = A
-            xn1 = functions.x_n1(xn,self.Ex,self.In)
+            xn1 = functions1.x_n1(xn,self.Ex,self.In)
             print(self.In.coef)
             Alist.append(A)
             xlist.append(xn1)
@@ -38,29 +39,31 @@ class Model():
         plt.plot(Alist,xlist)
         plt.show()
     
-    def runModel():
+    def runModel(self):
 
-    x = math.inf 
-    x_s = []
-    x_s.append(x)
-    y_s = []
-    y_s.append(0)
-    zk_s = []
-    zk_s.append(0)
-    for i in range(0,100):
-        x = functions.x_n1(x_n1(x, 5.82, 16.47, 0.2223, 1.487))
-        x.append(x)
-        en = functions.error_estim(0,100, x_s[i-5], x_s[i-1])
+        x = math.inf 
+        x_s = []
+        x_s.append(x)
+        y_s = []
+        y_s.append(0)
+        zk_s = []
+        zk_s.append(0)
+        outputk_s = []
+        for i in range(0,100):
+            x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
+            x.append(x)
+            en = functions.error_estim(0,100, x_s[i-5], x_s[i-1])
 
-        g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+            g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
 
-        fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
-        y.append(fyk)
+            fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
+            y.append(fyk)
 
-        zk = functions.Rulkov(3.2, beta, Iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
-        zk_s.append(zk)
+            zk = functions.Rulkov(3.2, beta, Iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+            zk_s.append(zk)
 
-        outputk = functions.output()
+            outputk = functions.output(An, 16.47, 5.82, Bn, 1, 0,100, x_s[i-5], x_s[i-1], zk)
+            outputk_s.append(outputk)
 
 
-        return
+        return outputk_s
