@@ -28,11 +28,15 @@ def gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
 
 def fyk(alpha, beta, Iext, yk, ykm1):
     u = beta + Iext
+    print(0 < yk < (alpha + u))
+    print(ykm1 <= 0)
+    print(yk)
     if yk <= 0:
         return alpha/(1-yk) + u
-    elif 0 < yk < alpha + u and ykm1 <= 0:
+    #error when 0 < yk < alpha + u
+    elif (0 < yk < (alpha + u)) and (ykm1 <= 0):
         return alpha + u 
-    elif yk >= alpha + u or ykm1 > 0:
+    elif (yk >= (alpha + u)) or (ykm1 > 0):
         return -1
 
 
