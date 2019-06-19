@@ -15,8 +15,8 @@ def gnorm(A, An, B, Bn):
     gnorm = Adiff - Bdiff
     return gnorm
 
-def output(An, A, B, Bn, w3, n1,n2,xn,xp, zk):
-    output = (1.1- (gnorm(A, An, B, Bn)) * np.tansig(w3 * error_estim(n1,n2,xn,xp)))*zk
+def output(An, A, B, Bn, w3, en, zk):
+    output = (1.1- (gnorm(A, An, B, Bn)) * np.tansig(w3 * en))*zk
     return output
 
 def gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
@@ -36,7 +36,7 @@ def fyk(alpha, beta, Iext, yk, ykm1):
         return -1
 
 
-def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
+def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, g):
     def epsilon(y, yth):
         return np.heaviside(y - yth)
     
@@ -45,7 +45,7 @@ def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, gopt, A, An, B, Bn, wd, 
     if yk > alpha + u or ykm1 > 0:
         zkp1 = zs
     else:
-        zkp1 = (1-mu) * zk - gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp) * zk * ((1-zk)**2)
+        zkp1 = (1-mu) * zk - g * zk * ((1-zk)**2)
 
     return ykp1, zkp1 
 
