@@ -10,32 +10,76 @@ def error_estim(n1, n2, xn, xp):
     en = (1/(n2-n1+1))*(abs((xn-xp) - xn))
     return en
 
+x = math.inf
+x2 = -(math.inf)
+x_set = []
+x2_set = []
+B_set = []
+for A in np.arange(0, 40, 0.1):
+    for i in range(0, 400):
+        y = x_n1(x, 5.82, A, 0.2223, 1.487)
+        y2 = x_n1(x2, 5.82, A, 0.2223, 1.487)
+        # x = error_estim(1,50, x_set[period], x1)
+        # Plot the two lines.
+        # plt.plot([x, x], [x, y], 'k', lw=1)
+        # plt.plot([x, y], [y, y], 'k', lw=1)
 
-for A in np.arange(0, 40, 5):
-    xn = math.inf
-    xn2 = -(math.inf)
-    xn_set = []
-    xn1_set = []
-    A_set = []
-    for i in range(0,100):
-        xn = x_n1(xn, 5.82, A, 1.487, 0.2223)
-        xn2 = x_n1(xn2, 5.82, A, 1.487, 0.2223)
-    for i in range(0,100):
-        xn = x_n1(xn, 5.82, A, 1.487, 0.2223)
-        xn2 = x_n1(xn2, 5.82, A, 1.487, 0.2223)
-        xn_set.append(xn)
-        xn1_set.append(xn2)
-        x_axis = np.arange(0,100,1)
-    plt.plot(x_axis, xn_set)
-    plt.plot(x_axis, xn1_set)
-    plt.show()
-    
-#     xn_set.append(xn)
-#     xn1_set.append(xn2)
-#     A_set.append(A)
-    
+        # Plot the positions with increasing
+        # opacity.
+        # plt.plot([x], [y], 'ok', ms=10, alpha=(i + 1) / n)
+        x = y
+        x2=y2
+    for j in range(0, 100):
+        y = x_n1(x, 5.82, A, 0.2223, 1.487)
+        y2 = x_n1(x2, 5.82, A, 0.2223, 1.487)
+        x = y
+        x2 = y2
+        x_set.append(x)
+        x2_set.append(x2)
+        B_set.append(A)
+
+    # plt.show()
 
 
-# plt.plot(A_set, xn_set)
-# plt.plot(A_set, xn1_set)
+
+plt.scatter(B_set, x_set, s=0.03)
+plt.scatter(B_set, x2_set, s=0.03)
+plt.show()
+
+
+
+x = math.inf
+x2 = -(math.inf)
+x_set = []
+x2_set = []
+B_set = []
+for B in np.arange(0, 20, 0.1):
+    for i in range(0, 400):
+        y = x_n1(x, B, 14.52, 0.2223, 1.487)
+        y2 = x_n1(x2, B, 14.52, 0.2223, 1.487)
+        # x = error_estim(1,50, x_set[period], x1)
+        # Plot the two lines.
+        # plt.plot([x, x], [x, y], 'k', lw=1)
+        # plt.plot([x, y], [y, y], 'k', lw=1)
+
+        # Plot the positions with increasing
+        # opacity.
+        # plt.plot([x], [y], 'ok', ms=10, alpha=(i + 1) / n)
+        x = y
+        x2=y2
+    for j in range(0, 100):
+        y = x_n1(x, B, 14.52, 0.2223, 1.487)
+        y2 = x_n1(x2, B, 14.52, 0.2223, 1.487)
+        x = y
+        x2 = y2
+        x_set.append(x)
+        x2_set.append(x2)
+        B_set.append(B)
+
+    # plt.show()
+
+
+
+plt.scatter(B_set, x_set, s=0.01)
+plt.scatter(B_set, x2_set, s=0.01)
 plt.show()
