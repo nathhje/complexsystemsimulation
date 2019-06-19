@@ -14,5 +14,5 @@ class Population:
         self.weight = weight
         
     def performance(self,xn):
-        print(self.coef)
+        #print(self.coef)
         return self.coef*math.tanh(self.weight*xn)

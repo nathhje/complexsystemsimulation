@@ -48,7 +48,7 @@ class Model():
         iext = 0.5
 
         x = math.inf 
-        x_s = []
+        x_s = [math.inf for i in range(5)]
         x_s.append(x)
         y_s = []
         y_s.append(0)
@@ -57,7 +57,7 @@ class Model():
         outputk_s = []
         for i in range(0,100):
             x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
-            x.append(x)
+            x_s.append(x)
             en = functions.error_estim(0,100, x_s[i-5], x_s[i-1])
 
             g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
