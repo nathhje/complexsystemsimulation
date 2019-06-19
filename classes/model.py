@@ -63,12 +63,12 @@ class Model():
             g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
 
             fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
-            y.append(fyk)
+            y_s.append(fyk)
 
-            zk = functions.Rulkov(3.2, beta, iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+            zk = functions.Rulkov(3.2, beta, iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, g)
             zk_s.append(zk)
 
-            outputk = functions.output(An, 16.47, 5.82, Bn, 1, 0,100, x_s[i-5], x_s[i-1], zk)
+            outputk = functions.output(An, 16.47, 5.82, Bn, 1, en, zk)
             outputk_s.append(outputk)
 
 
