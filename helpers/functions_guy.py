@@ -48,3 +48,5 @@ def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, gopt, A, An, B, Bn, wd, 
         zkp1 = (1-mu) * zk - gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp) * zk * ((1-zk)**2)
 
     return ykp1, zkp1 
+
+def output()
