@@ -16,7 +16,7 @@ def gnorm(A, An, B, Bn):
     return gnorm
 
 def output(An, A, B, Bn, w3, en, zk):
-    output = (1.1- (gnorm(A, An, B, Bn)) * np.tansig(w3 * en))*zk
+    output = (1.1- (gnorm(A, An, B, Bn)) * np.tanh(w3 * en))*zk
     return output
 
 def gdelta(gopt, A, An, B, Bn, wd, n1,n2,xn,xp):
@@ -40,7 +40,7 @@ def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, g):
     yth = 0.01
     
     def epsilon(y):
-        return np.heaviside(y - yth)
+        return np.heaviside((y - yth),0)
 
     ykp1 = (1- epsilon(zk)) * fyk(alpha, beta, Iext, yk, ykm1) + epsilon(zk)*yp
     
