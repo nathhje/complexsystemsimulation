@@ -49,24 +49,25 @@ class Model():
 
         x = math.inf 
         x_s = [math.inf for i in range(5)]
-        x_s.append(x)
-        y_s = []
-        y_s.append(0)
+        # x_s.append(x)
+
+        y_s = [0 for i in range(2)]
         zk_s = []
         zk_s.append(0)
         outputk_s = []
         for i in range(0,100):
             x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
             x_s.append(x)
-            en = functions.error_estim(0,100, x_s[i-5], x_s[i-1])
+            en = functions.error_estim(0,100, x_s[i], x_s[i+4])
 
-            g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+            g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i], x_s[i+4])
 
-            fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
-            y_s.append(fyk)
+            # fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
+            # y_s.append(fyk)
 
-            ykp1, zk = functions.Rulkov(3.2, beta, iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, g)
+            ykp1, zk = functions.Rulkov(3.2, beta, iext, y_s[i+1], y_s[i], zk_s[i], -0.8, 1.3, 0.002, g)
             zk_s.append(zk)
+            y_s.append(ykp1)
 
             outputk = functions.output(An, 16.47, 5.82, Bn, 1, en, zk)
             outputk_s.append(outputk)
