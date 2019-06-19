@@ -9,7 +9,7 @@ import math
 import matplotlib.pyplot as plt
 
 from classes.population import Population
-import helpers.functions as functions
+import helpers.functions_guy as functions
 
 class Model():
     
@@ -39,4 +39,28 @@ class Model():
         plt.show()
     
     def runModel():
+
+    x = math.inf 
+    x_s = []
+    x_s.append(x)
+    y_s = []
+    y_s.append(0)
+    zk_s = []
+    zk_s.append(0)
+    for i in range(0,100):
+        x = functions.x_n1(x_n1(x, 5.82, 16.47, 0.2223, 1.487))
+        x.append(x)
+        en = functions.error_estim(0,100, x_s[i-5], x_s[i-1])
+
+        g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+
+        fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
+        y.append(fyk)
+
+        zk = functions.Rulkov(3.2, beta, Iext, 0.0001, y_s[i-2], zk_s[i-1], -0.8, 1.3, 0.002, 0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i-5], x_s[i-1])
+        zk_s.append(zk)
+
+        outputk = functions.output()
+
+
         return
