@@ -47,18 +47,24 @@ class Model():
         beta = 1
         iext = 0.5
 
-        x = math.inf 
-        x_s = [math.inf for i in range(5)]
+        #These cannot be infinity, but then what do we do?!
+
+        x = 10
+        x_s = [10 for i in range(10)]
         # x_s.append(x)
+
+
+
 
         y_s = [0 for i in range(2)]
         zk_s = []
         zk_s.append(0)
         outputk_s = []
-        for i in range(0,100):
+        n = []
+        for i in range(0,1000):
             x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
             x_s.append(x)
-            en = functions.error_estim(0,100, x_s[i], x_s[i+4])
+            en = functions.error_estim(0,100, x_s[i], x_s[i+9])
 
             g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i], x_s[i+4])
 
@@ -72,5 +78,9 @@ class Model():
             outputk = functions.output(An, 16.47, 5.82, Bn, 1, en, zk)
             outputk_s.append(outputk)
 
+            n.append(i)
 
-        return outputk_s
+        plt.plot(n, outputk_s)
+        plt.show()
+
+        return outputk_s, n
