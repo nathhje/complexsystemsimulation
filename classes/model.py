@@ -45,12 +45,13 @@ class Model():
 
         An = 13.6
         Bn = 5.82
-        beta = 0.1
+        beta = -1
+
 
 
         #These cannot be infinity, but then what do we do?!
         x = 10
-        x_s = [10 for i in range(21)]
+        x_s = [10 for i in range(5)]
 
         y_s = [0 for i in range(2)]
         zk_s = []
@@ -58,35 +59,75 @@ class Model():
         outputk_s = []
         n = []
         iext_s = []
-        for i in range(0,100):
-            if i %2 != 0:
-                iext = 0
-            else:
-                iext = -2
+        fyk_s = []
+        for i in range(0,1000):
+            # if i %2 != 0:
+            #     iext = 0
+            # else:
+            #     iext = -2
+            iext = -1.5
             iext_s.append(iext)
 
             x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
             x_s.append(x)
-            en = functions.error_estim(0,100, x_s[i], x_s[i+20])
+            en = functions.error_estim(0,100, x_s[i], x_s[i+5])
 
-            g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i], x_s[i+4])
+            g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i], x_s[i+5])
 
-            # fyk = functions.fyk(3.2, beta, iext, 0.0001, y_s[i-1])
-            # y_s.append(fyk)
+            fyk = functions.fyk(3.2, beta, iext, y_s[i+1], y_s[i])
+            fyk_s.append(fyk)
 
             ykp1, zk = functions.Rulkov(3.2, beta, iext, y_s[i+1], y_s[i], zk_s[i], -0.8, 1.3, 0.002, g)
             zk_s.append(zk)
             y_s.append(ykp1)
 
             outputk = functions.output(An, 16.47, 5.82, Bn, 1, en, zk)
+
             outputk_s.append(outputk)
 
             n.append(i)
 
-        plt.plot(n, outputk_s)
-        plt.show()
+        # plt.plot(n, outputk_s)
+        # plt.show()
 
-        plt.plot(n, iext_s)
+
+
+
+
+        # #Plotting things from Rulkov paper to see if our results match (and they do, apart from som strange behaviour for plot 2)
+        # #PLot 1
+        # i_s=[]
+        # i_s.append(1.31)
+        # fykp = []
+        # a =0
+        # for i in np.arange(-1.3, 1, 0.01):
+        #     i_s.append(i)
+        #     fykp.append(functions.fyk(3.2, beta, iext, i_s[a+1], (i_s[a] - 0.7)))
+        #     a +=1
+        # plt.plot(i_s[1:], fykp)
+        # plt.show()
+
+        # #Plot 2
+        i_s=[]
+        i_s.append(-0.21)
+        zk_s = []
+        zk_s.append(0)
+        a =0
+        ykp1_s = []
+        ykp1_s.append(0)
+        ykp1_s.append(0)
+        mv_s = []
+        a_s =[]
+        for i in np.arange(-0.2, 1.4, 0.01):
+            ykp1, zk = functions.Rulkov(3.25, -2.5780, 0.28, ykp1_s[a+1], ykp1_s[a], zk_s[a], 0.5, 1.3, 0.002, 0.2)
+            ykp1_s.append(ykp1)
+            zk_s.append(zk)
+            i_s.append(i)
+            a +=1
+            a_s.append(a)
+            mv = -25 + ykp1*80 + zk*85
+            mv_s.append(mv)
+        plt.plot(a_s, zk_s[1:])
         plt.show()
 
         return outputk_s, n
