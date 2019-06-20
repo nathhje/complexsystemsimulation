@@ -7,6 +7,8 @@ Created on Tue Jun 18 10:13:39 2019
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import random
+
 
 from classes.population import Population
 import helpers.functions_guy as functions
@@ -43,28 +45,29 @@ class Model():
 
         An = 13.6
         Bn = 5.82
+        beta = 0.1
 
-        beta = 1
-        iext = 0.5
 
         #These cannot be infinity, but then what do we do?!
-
         x = 10
-        x_s = [10 for i in range(10)]
-        # x_s.append(x)
-
-
-
+        x_s = [10 for i in range(21)]
 
         y_s = [0 for i in range(2)]
         zk_s = []
         zk_s.append(0)
         outputk_s = []
         n = []
-        for i in range(0,1000):
+        iext_s = []
+        for i in range(0,100):
+            if i %2 != 0:
+                iext = 0
+            else:
+                iext = -2
+            iext_s.append(iext)
+
             x = functions.x_n1(x, 5.82, 16.47, 0.2223, 1.487)
             x_s.append(x)
-            en = functions.error_estim(0,100, x_s[i], x_s[i+9])
+            en = functions.error_estim(0,100, x_s[i], x_s[i+20])
 
             g = functions.gdelta(0.3, 16.47, An, 5.82, Bn, 1, 0, 100, x_s[i], x_s[i+4])
 
@@ -81,6 +84,9 @@ class Model():
             n.append(i)
 
         plt.plot(n, outputk_s)
+        plt.show()
+
+        plt.plot(n, iext_s)
         plt.show()
 
         return outputk_s, n
