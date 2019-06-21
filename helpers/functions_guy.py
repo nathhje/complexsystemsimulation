@@ -40,7 +40,7 @@ def fyk(alpha, beta, Iext, yk, ykm1):
 
 
 def Rulkov(alpha, beta, Iext, yk, ykm1, zk, yp, zs, mu, g):
-    yth = 0.01
+    yth = 0.5
     
     def epsilon(y):
         return np.heaviside((y - yth),0)

@@ -13,7 +13,6 @@ def main():
     print(theModel.In.coef)
     print(theModel.Ex.weight) 
     output = theModel.runModel()
-    print(output)
 
 if __name__ == '__main__':
     main()

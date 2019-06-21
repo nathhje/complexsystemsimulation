@@ -82,13 +82,12 @@ class Model():
             y_s.append(ykp1)
 
             outputk = functions.output(An, 16.47, 5.82, Bn, 1, en, zk)
-
             outputk_s.append(outputk)
 
             n.append(i)
 
-        # plt.plot(n, outputk_s)
-        # plt.show()
+        plt.plot(n, outputk_s)
+        plt.show()
 
 
 
@@ -108,6 +107,7 @@ class Model():
         # plt.show()
 
         # #Plot 2
+        Iext = 0
         i_s=[]
         i_s.append(-0.21)
         zk_s = []
@@ -118,8 +118,9 @@ class Model():
         ykp1_s.append(0)
         mv_s = []
         a_s =[]
-        for i in np.arange(-0.2, 1.4, 0.01):
-            ykp1, zk = functions.Rulkov(3.25, -2.5780, 0.28, ykp1_s[a+1], ykp1_s[a], zk_s[a], 0.5, 1.3, 0.002, 0.2)
+        counter = 0
+        for i in np.arange(-0.2, 8.0, 0.01):
+            ykp1, zk = functions.Rulkov(3.2, -2.5780, Iext, ykp1_s[a+1], ykp1_s[a], zk_s[a], -0.8, 1.3, 0.002, 0.2)
             ykp1_s.append(ykp1)
             zk_s.append(zk)
             i_s.append(i)
@@ -127,6 +128,12 @@ class Model():
             a_s.append(a)
             mv = -25 + ykp1*80 + zk*85
             mv_s.append(mv)
+            counter += 1
+            if counter == 298:
+                Iext = 0.01
+            if counter == 400:
+                Iext = 0
+                counter = 0
         plt.plot(a_s, zk_s[1:])
         plt.show()
 
