@@ -6,7 +6,7 @@ def x_n1(xn, B, A, w1, w2):
     return x_n1
 
 def error_estim(n1, n2, xn, xp): 
-    en = (1/(n2-n1+1)) * abs((xn-xp) - xn)
+    en = (1/(n2-n1+1)) * abs(xp - xn)
     return en
 
 def gnorm(A, An, B, Bn):
