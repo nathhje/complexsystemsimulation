@@ -10,9 +10,7 @@ import classes.model as model
 def main():
     
     theModel = model.Model()
-    print(theModel.In.coef)
-    print(theModel.Ex.weight) 
-    output = theModel.runModel()
+    theModel.runModel()
 
 if __name__ == '__main__':
     main()

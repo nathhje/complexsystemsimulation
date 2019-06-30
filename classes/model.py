@@ -5,23 +5,15 @@ Created on Tue Jun 18 10:13:39 2019
 @author: Gebruiker
 """
 import numpy as np
-import math
 import matplotlib.pyplot as plt
-import random
 
-
-from classes.population import Population
 import helpers.functions_guy as functions
-import helpers.functions as functions1
 
 class Model():
     
     def __init__(self):
     
-        A,B = 16.5, 5.82
-        w1,w2 = 0.2223, 1.478
-        self.In = Population(A,w1)
-        self.Ex = Population(B,w2)
+        return
     
     #Running model
     def runModel(self):
@@ -39,7 +31,6 @@ class Model():
         outputk_s = []
         outputk_s.append(0)
         n = []
-        iext_s = []
         iext = 0
         counter = 0
         fyk_s = []
@@ -130,12 +121,15 @@ class Model():
         plt.ylabel('Normalised Circadian Activity')
         plt.xlabel('Time (Days)')
         plt.title('Simmulated Circadian Activity of Bipolar Individual \n in a depressed state')
-        textstr = 'A = 14.47B = 5.82/7.65' 
+        textstr = 'A = 14.47B = 5.82' 
         plt.text(20, -0.27, textstr, fontsize=8)
         # plt.scatter(n, x_s[50:], s=0.01)
         # plt.plot(n, zk_s[1:])
         plt.show()
 
+        plt.title("Time Series of Neuronal Activity x(n)")
+        plt.xlabel("Iterations (n)")
+        plt.ylabel("Neuronal Activity x(n)")
         plt.scatter(n, x_s[200:], s=9, c='r', zorder=1)
         plt.plot(n, x_s[200:], zorder=2, lw = 0.05)
         plt.show()
